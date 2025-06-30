@@ -19,11 +19,11 @@ const Testimonial = () => {
     const [reviews, setReviews] = useState([])
 
     useEffect(() => {
-        fetch('review.json')
+        fetch('http://localhost:5000/reviews')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
-    // console.log(reviews);
+    console.log(reviews);
     return (
         <div className='my-20'>
             <SectionTitle
@@ -31,7 +31,7 @@ const Testimonial = () => {
                 heading={"TESTIMONIALS"}
             ></SectionTitle>
 
-            <Swiper navigation={true}  loop={Infinity} modules={[Navigation]} className="mySwiper">
+            <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
                 {
                     reviews.map(review => <SwiperSlide
                         key={review._id}

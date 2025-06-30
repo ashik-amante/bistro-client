@@ -28,7 +28,7 @@ const Chefreco = () => {
                             <img 
                                 className='-96'
                                 src={item.image}
-                                alt="Shoes" />
+                                alt="kam kore na kn" />
                         </figure>
                         <div className="card-body">
                             <h2 className="text-2xl text-center font-semibold">{item.name}</h2>
