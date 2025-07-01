@@ -7,6 +7,7 @@ const Navbar = () => {
     const handleLogOut = ()=>{
         logOut()
     }
+    console.log(user);
 
     const navOptions = <>
         <li><Link to='/'>Home</Link></li>
@@ -16,6 +17,8 @@ const Navbar = () => {
         {
             user ? <>
                 <li>
+                    <title>{user?.displayName}</title>
+                    {/* <span>{user?.displayName}</span> */}
                    <button onClick={handleLogOut} className="btn btn-active btn-ghost">LogOut</button></li>
             </> :
                 <><li>

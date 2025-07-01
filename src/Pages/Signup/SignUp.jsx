@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const SignUp = () => {
-    const {createUser} = useContext(AuthContext)
+    const {createUser,updateUserProfile} = useContext(AuthContext)
     const navigate = useNavigate()
 
     const { register, handleSubmit,  reset, formState: { errors }, } = useForm()
@@ -16,8 +16,16 @@ const SignUp = () => {
         createUser(data.email, data.password)
         .then(result=>{
             const user = result.user;
+            updateUserProfile(data.name , data.photoURL)
+            .then(()=>{
+                console.log('name and phot updated ');
+                navigate('/')
+            })
+            .catch(err=>{
+                console.log(err);
+            })
             console.log(user);
-            navigate('/')
+            
         })
         .catch(err=>{
             console.log(err.message);
@@ -51,6 +59,20 @@ const SignUp = () => {
                                 {errors.name?.type === 'required' && <span className='text-red-500 mr-4'>name is required  </span>}
 
                                 {errors.name?.type === 'minLength' && <span className='text-red-500 mr-4'>name must be 4 char or long   </span>}
+
+
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Photo Url</span>
+                                </label>
+                                <input type="text" {...register('photoURL', {
+                                    required: true, 
+                                })} name='photoURL' placeholder="Photo url" className="input input-bordered" />
+
+                                {errors.photoURL?.type === 'required' && <span className='text-red-500 mr-4'>Photo url is required  </span>}
+
+                               
 
 
                             </div>
