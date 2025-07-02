@@ -14,10 +14,10 @@ const Navbar = () => {
 
     const navOptions = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/menu'>Menu</Link></li>
-        <li><Link to='/order/salad'>Order</Link></li>
+        <li><Link to='/menu'>Our Menu</Link></li>
+        <li><Link to='/order/salad'>Order food</Link></li>
         <li>
-            <Link to='/carts'>
+            <Link to='/dashboard/cart'>
            
                 <button className="btn gap-2 btn-outline">
                      <FaCartPlus className='text-2xl' />
