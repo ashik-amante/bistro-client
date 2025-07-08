@@ -3,33 +3,53 @@ import { Helmet } from 'react-helmet-async';
 import { useForm, } from "react-hook-form"
 import { AuthContext } from '../../Providers/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 
 const SignUp = () => {
-    const {createUser,updateUserProfile} = useContext(AuthContext)
+    const { createUser, updateUserProfile } = useContext(AuthContext)
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
 
-    const { register, handleSubmit,  reset, formState: { errors }, } = useForm()
+    const { register, handleSubmit, reset, formState: { errors }, } = useForm()
 
     const onSubmit = (data) => {
         console.log(data)
         createUser(data.email, data.password)
-        .then(result=>{
-            const user = result.user;
-            updateUserProfile(data.name , data.photoURL)
-            .then(()=>{
-                console.log('name and phot updated ');
-                navigate('/')
+            .then(result => {
+                const user = result.user;
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                        
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "user added to database ",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                }
+                            })
+                        console.log('name and phot updated ');
+                        navigate('/')
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                console.log(user);
+
             })
-            .catch(err=>{
-                console.log(err);
+            .catch(err => {
+                console.log(err.message);
             })
-            console.log(user);
-            
-        })
-        .catch(err=>{
-            console.log(err.message);
-        })
         reset()
     }
 
@@ -67,12 +87,12 @@ const SignUp = () => {
                                     <span className="label-text">Photo Url</span>
                                 </label>
                                 <input type="text" {...register('photoURL', {
-                                    required: true, 
+                                    required: true,
                                 })} name='photoURL' placeholder="Photo url" className="input input-bordered" />
 
                                 {errors.photoURL?.type === 'required' && <span className='text-red-500 mr-4'>Photo url is required  </span>}
 
-                               
+
 
 
                             </div>
