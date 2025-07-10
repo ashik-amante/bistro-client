@@ -3,6 +3,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, val
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import SocialLogin from '../../Components/SocialLogin/SocialLogin';
 
 
 const Login = () => {
@@ -95,6 +96,10 @@ const Login = () => {
                             </div>
                         </form>
                         <p className='text-center mb-4'>New here?  <Link className='underline text-blue-700' to='/signup'>Create a new account</Link> </p>
+
+                         <div className='px-6 pb-6 '>
+                            <SocialLogin></SocialLogin>
+                        </div>
                     </div>
                 </div>
             </div>

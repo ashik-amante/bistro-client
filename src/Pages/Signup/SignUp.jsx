@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm, } from "react-hook-form"
 import { AuthContext } from '../../Providers/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../Components/SocialLogin/SocialLogin';
 
 
 const SignUp = () => {
@@ -125,8 +126,13 @@ const SignUp = () => {
 
                                 <input className="btn btn-primary w-full" type="submit" value="Sign Up" />
                             </div>
+                            <p className='text-center mb-4 mt-4'>Already have an account ?  <Link className='underline text-blue-700' to='/login'>Log In </Link> </p>
+                        </div>
+                        <div className='px-6 pb-6 '>
+                            <SocialLogin></SocialLogin>
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </>
