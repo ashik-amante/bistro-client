@@ -33,16 +33,18 @@ const DashBoard = () => {
                             <li>
                                 <NavLink to='/dashboard/allUsers'>   <FaUsers /> All Users</NavLink>
                             </li>
-                           
+
                         </>
                             :
                             <>
-                                <li className='font-semibold'>
-                                    <NavLink to='/dashboard/cart'>   <FaShoppingCart />   My cart ({carts.length}) </NavLink>
-                                </li>
                                 <li>
                                     <NavLink to='/dashboard/userHome'>   <FaHome />    User Home</NavLink>
                                 </li>
+                                
+                                <li className='font-semibold'>
+                                    <NavLink to='/dashboard/cart'>   <FaShoppingCart />   My cart ({carts.length}) </NavLink>
+                                </li>
+
                                 <li>
                                     <NavLink to='/dashboard/reservation'>   <FaCalendar />   Reservation</NavLink>
                                 </li>
