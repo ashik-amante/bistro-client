@@ -13,7 +13,7 @@ const AdminRoute = ({children}) => {
     
     if(user && isAdmin) return children
     if(loading || isAdminLoading) return <p className='text-3xl text-center'>Loading .......</p>
-    return <Navigate to='/login' state={{from : location}} replace></Navigate>
+    return <Navigate to='/' state={{from : location}} replace></Navigate>
 };
 
 export default AdminRoute;
