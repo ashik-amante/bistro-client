@@ -5,10 +5,11 @@ import { FaTrash } from 'react-icons/fa6';
 import { FaEdit } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Link } from 'react-router-dom';
 // import { useQuery } from '@tanstack/react-query';
 
 const ManageItems = () => {
-    const [menu] = useMenu()
+    const [menu,refetch] = useMenu()
 
     const axiosSecure = useAxiosSecure()
 
@@ -34,13 +35,15 @@ const ManageItems = () => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/menu/${item._id}`)
                 console.log(res.data);
-                // if(res.data.deletedCount>0){
-                //     Swal.fire({
-                //     title: "Deleted!",
-                //     text: "Your file has been deleted.",
-                //     icon: "success"
-                // });
-                // }
+                
+                if(res.data.deletedCount>0){
+                    refetch()
+                    Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+                }
                 
             }
         });
@@ -85,7 +88,7 @@ const ManageItems = () => {
                                 </td>
                                 <td>{item.price} $</td>
                                 <th>
-                                    <button className="btn btn-ghost btn-lg text-orange-600"> <FaEdit></FaEdit>  </button>
+                                    <Link to={`/dashboard/updateItem/${item._id}`} className="btn btn-ghost btn-lg text-orange-600"> <FaEdit></FaEdit>  </Link>
                                 </th>
                                 <th>
                                     <button onClick={() => handleDeleteItem(item)} className="btn btn-ghost btn-lg text-red-600"> <FaTrash></FaTrash> </button>

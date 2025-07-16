@@ -2,10 +2,11 @@ import useCart from "../../../hooks/useCart";
 import { FaTrash } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 
 const CArt = () => {
-    const [carts,refetch] = useCart()
+    const [carts, refetch] = useCart()
     const totalPrice = carts.reduce((total, item) => total + item.price, 0)
 
     const axiosSecure = useAxiosSecure()
@@ -23,17 +24,17 @@ const CArt = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/carts/${id}`)
-                .then(res=>{
-                     refetch()
-                    if(res.data.deleteCount > 0){
-                        Swal.fire({
-                    title: "Deleted!",
-                    text: "Your item has been deleted.",
-                    icon: "success"
-                });
-                    }
-                   
-                })
+                    .then(res => {
+                        refetch()
+                        if (res.data.deleteCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your item has been deleted.",
+                                icon: "success"
+                            });
+                        }
+
+                    })
             }
         });
     }
@@ -42,7 +43,11 @@ const CArt = () => {
             <div className="flex justify-evenly">
                 <h2 className="text-3xl ">Items: {carts.length}</h2>
                 <h2 className="text-3xl ">Total Price : {totalPrice}</h2>
-                <button className="btn btn-primary">  Pay</button>
+                {carts.length ? <Link to='/dashboard/payment'>
+                    <button className="btn btn-primary">  Pay</button>
+                </Link> :
+                    <button disabled className="btn btn-primary">  Pay</button>
+                }
             </div>
 
             <div className="overflow-x-auto w-full">
