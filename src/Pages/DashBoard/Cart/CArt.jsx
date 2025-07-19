@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const CArt = () => {
     const [carts, refetch] = useCart()
     const totalPrice = carts.reduce((total, item) => total + item.price, 0)
+    console.log(totalPrice,typeof(totalPrice));
 
     const axiosSecure = useAxiosSecure()
 

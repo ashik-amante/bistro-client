@@ -45,12 +45,14 @@ const DashBoard = () => {
                                     <NavLink to='/dashboard/cart'>   <FaShoppingCart />   My cart ({carts.length}) </NavLink>
                                 </li>
 
-                                <li>
-                                    <NavLink to='/dashboard/reservation'>   <FaCalendar />   Reservation</NavLink>
+                                 <li>
+                                    <NavLink to='/dashboard/payment'>   <FaCalendar />   Payment </NavLink>
                                 </li>
+
                                 <li>
-                                    <NavLink to='/dashboard/payment'>   <FaCalendar />   Payment History</NavLink>
+                                    <NavLink to='/dashboard/paymentHistory'>   <FaCalendar />   Payment History</NavLink>
                                 </li>
+                               
                                 <li>
                                     <NavLink to='/dashboard/review'>   <FaAd /> Add a  Reviews</NavLink>
                                 </li>
