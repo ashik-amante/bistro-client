@@ -18,7 +18,7 @@ const DashBoard = () => {
                     {
 
                         isAdmin ? <>
-                            <li className='font-semibold'>
+                            <li >
                                 <NavLink to='/dashboard/adminHome'>   <FaHome />   Admin Home  </NavLink>
                             </li>
                             <li>
@@ -41,7 +41,7 @@ const DashBoard = () => {
                                     <NavLink to='/dashboard/userHome'>   <FaHome />    User Home</NavLink>
                                 </li>
                                 
-                                <li className='font-semibold'>
+                                <li >
                                     <NavLink to='/dashboard/cart'>   <FaShoppingCart />   My cart ({carts.length}) </NavLink>
                                 </li>
 
