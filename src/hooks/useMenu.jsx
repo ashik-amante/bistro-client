@@ -8,7 +8,7 @@ const useMenu= ()=>{
      const axiosPublic = useAxiosPublic()
     
         // useEffect(() => {
-        //     fetch('http://localhost:5000/menu')
+        //     fetch('https://server-murex-iota-75.vercel.app/menu')
         //         .then(res => res.json())
         //         .then(data => {
                    
